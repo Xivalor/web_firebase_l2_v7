@@ -1,0 +1,72 @@
+<h2 class="mb-4">Информация об услуге</h2>
+
+@if (state() === undefined) {
+<div class="card">
+
+    <div class="card-body">
+
+        <div class="alert alert-secondary">
+            Загрузка...
+        </div>
+
+    </div>
+
+</div>
+}
+@else if (state(); as item) {
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <h3 class="card-title">
+                {{ item.description }}
+            </h3>
+
+            <p class="card-text">
+                <strong>ID:</strong>
+                {{ item.id }}
+            </p>
+
+            <p class="card-text">
+                <strong>Описание:</strong>
+                {{ item.description }}
+            </p>
+
+            <p class="card-text">
+                <strong>Стоимость:</strong>
+                {{ item.price }} руб.
+            </p>
+
+            <a
+                routerLink="/services"
+                class="btn btn-primary"
+            >
+                Вернуться к списку
+            </a>
+
+        </div>
+
+    </div>
+
+    }
+    @else {
+    <div class="card">
+
+        <div class="card-body">
+        
+            <div class="alert alert-danger">
+                Услуга не найдена.
+            </div>
+
+            <a
+                routerLink="/services"
+                class="btn btn-primary"
+            >
+                Вернуться к списку
+            </a>
+
+        </div>
+
+    </div>
+}

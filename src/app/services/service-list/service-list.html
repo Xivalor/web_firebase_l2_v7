@@ -1,0 +1,43 @@
+<h2 class="mb-3">Список услуг</h2>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <a
+            routerLink="/services/manage"
+            class="btn btn-primary"
+        >
+            Редактировать список 
+        </a>
+
+    </div>
+    
+</div>
+
+<div class="list-group">
+
+    @for (service of services; track service.id) {
+
+        <a
+            class="list-group-item list-group-item-action"
+            [routerLink]="['/services', service.id]"
+        >
+
+            <div class="d-flex justify-content-between">
+
+                <strong>
+                    {{ service.description }}
+                </strong>
+
+                <span>
+                    {{ service.price }} руб.
+                </span>
+
+            </div>
+
+        </a>
+
+    }
+
+</div>

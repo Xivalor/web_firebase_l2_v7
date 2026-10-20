@@ -1,0 +1,124 @@
+<div class="container">
+
+    <h2 class="mb-4">Управление услугами</h2>
+
+    <form
+        #serviceForm="ngForm"
+        (ngSubmit)="editing ? updateService() : addService()"
+        class="mb-4"
+    >
+
+        <div class="mb-3">
+            <label for="description" class="form-label">
+                Описание услуги
+            </label>
+
+            <input
+                id="description"
+                name="description"
+                type="text"
+                class="form-control"
+                [(ngModel)]="model.description"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">
+                Цена
+            </label>
+
+            <input
+                id="price"
+                name="price"
+                type="number"
+                class="form-control"
+                [(ngModel)]="model.price"
+                required
+                min="0"
+            >
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-primary me-2"
+            [disabled]="serviceForm.invalid"
+        >
+            {{ editing ? 'Сохранить изменения' : 'Добавить услугу' }}
+        </button>
+
+        @if (editing) {
+            <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="clearForm()"
+            >
+                Отмена
+            </button>
+        }
+
+    </form>
+    
+
+    <h3 class="mb-3">Существующие услуги</h3>
+
+    <div class="list-group">
+
+        @for (service of services; track service.id) {
+
+            <div class="list-group-item">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+                        <strong>
+                            {{ service.description }}
+                        </strong>
+
+                        <span class="ms-3">
+                            {{ service.price }} руб.
+                        </span>
+                    </div>
+
+                    <div>
+                        <button
+                            type="button"
+                            class="btn btn-warning btn-sm me-2"
+                            (click)="editService(service)"
+                        >
+                            Изменить
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn btn-danger btn-sm"
+                            (click)="deleteService(service.id)"
+                        >
+                            Удалить
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        }
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <a
+                routerLink="/services"
+                class="btn btn-primary"
+            >
+                Вернуться к списку
+            </a>
+
+        </div>
+        
+    </div>
+
+</div>
